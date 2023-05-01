@@ -1,0 +1,20 @@
+.label-input-field {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  row-gap: 10px;
+
+  & > label {
+    margin-bottom: 0;
+  }
+
+  &.input-first {
+    & > input {
+      order: 0;
+    }
+
+    & > label {
+      order: 1;
+    }
+  }
+}

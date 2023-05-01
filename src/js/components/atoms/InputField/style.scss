@@ -1,0 +1,8 @@
+.input-text {
+  border: none;
+
+  &::placeholder {
+    color: gray;
+    text-transform: lowercase;
+  }
+}
