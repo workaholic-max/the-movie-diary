@@ -1,20 +1,19 @@
 // Colors
 $white: #FFF;
+// TODO: consider use little bit white-gray color for main text
+
 $black: #000;
-$whiteSmoke: #F9F9F9;
-$darkGreen: #333333;
-$lightestGray: #F3F4F6;
-$orange: #FF4D00;
-$darkBlue: #202945;
-$lightGray: #E7E7E7;
-$silver: #B8B8B8;
-$green: #518B08;
-$lightPurple: #9747FF;
-$boxShadowSilver: rgba($silver, 0.25);
+$gray: #B3B3B3;
+$primary: #3B6B96;
+$success: #41b883;
+$warning: #d4273b;
 
 // Fonts
-$imprima: 'Imprima', sans-serif;
+$robotoSlab: 'Roboto Slab', serif;
 
 // Sizes
 $tabletWidth: 1195px;
 $mobileWidth: 767px;
+
+// Styles
+$transition: 0.2s linear;

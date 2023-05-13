@@ -1,11 +1,44 @@
 .label-input-field {
   display: flex;
   flex-direction: column;
+  position: relative;
   width: 100%;
-  row-gap: 10px;
 
-  & > label {
-    margin-bottom: 0;
+  &.animated-text-field {
+    label {
+      position: absolute;
+      top: 0;
+      left: 10px;
+      transform: translateY(-50%);
+      background-color: $black;
+      padding: 0 2px 2px 2px;
+      font-size: 15px;
+      font-weight: 300;
+      color: $white;
+      transition: $transition;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      color: $white;
+      background-color: $black;
+      border-color: $primary;
+      transition: $transition;
+
+      &:not(:disabled):not([disabled]):hover,
+      &:focus {
+        box-shadow: 0 0 2px $primary;
+      }
+
+      &:focus + label,
+      &:not(:placeholder-shown) + label {
+        left: 0;
+        font-size: 0.8rem;
+        transform: translateY(-120%) translateX(-0.2rem);
+        padding: 0 0.2rem;
+      }
+    }
   }
 
   &.input-first {

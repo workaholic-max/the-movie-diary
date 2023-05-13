@@ -1,0 +1,55 @@
+.checkbox-field {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 200;
+  width: fit-content;
+
+  &:hover .checkmark {
+    box-shadow: 0 0 5px $primary;
+  }
+
+  &:has(input[type='checkbox']:checked):hover .checkmark {
+    box-shadow: 0 0 5px $success;
+  }
+
+  input[type='checkbox'] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    z-index: 2;
+    cursor: pointer;
+
+    &:checked ~ .checkmark {
+      background-color: $success;
+      border-color: $success;
+    }
+
+    &:checked ~ .checkmark:after {
+      content: '';
+      position: absolute;
+      display: block;
+      left: 5px;
+      top: 0;
+      width: 4px;
+      height: 10px;
+      border: solid $white;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg);
+    }
+
+    &:focus ~ .checkmark {
+      box-shadow: 0 0 5px $primary;
+    }
+  }
+
+  .checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    border: 2px solid $primary;
+  }
+}

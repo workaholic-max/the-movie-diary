@@ -1,8 +1,21 @@
 .input-text {
-  border: none;
+  border: 1px solid $primary;
+
+  &:hover,
+  &:focus {
+    outline: none;
+  }
+
+  &:disabled,
+  &[disabled] {
+    cursor: not-allowed;
+    border-color: $black;
+  }
 
   &::placeholder {
-    color: gray;
+    font-weight: 100;
+    color: $gray;
     text-transform: lowercase;
+    text-align: right;
   }
 }

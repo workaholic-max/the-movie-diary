@@ -27,6 +27,7 @@ module.exports = {
   rules: {
     'implicit-arrow-linebreak': NONE,
     'linebreak-style': NONE,
+    'operator-linebreak': NONE,
     indent: [
       ERROR,
       ERROR,

@@ -1,0 +1,114 @@
+.movie-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: fit-content;
+  background-color: $black;
+  padding: 5px;
+  border: 1px solid $primary;
+  cursor: pointer;
+  transition: $transition;
+
+  &:not(.movie-details--full):hover {
+    border-color: $white;
+
+    .movie-details__poster {
+      border-color: $white;
+    }
+
+    .movie-details__info-item {
+      color: $white;
+      border-color: $white;
+    }
+  }
+
+  &--full {
+    padding: 10px;
+    flex-direction: row;
+    align-items: stretch;
+    cursor: auto;
+
+    @media screen and (max-width: 650px) {
+      padding: 15px 10px;
+      width: 100%;
+    }
+
+    .movie-details__poster {
+      margin-right: 10px;
+
+      @media screen and (max-width: $mobileWidth) {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+
+    .movie-details__info-item {
+      text-align: left;
+      font-size: 15px;
+      color: $white;
+      max-width: 500px;
+
+      &:first-child {
+        margin-top: 0;
+      }
+
+      @media screen and (max-width: 650px) {
+        max-width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: $mobileWidth) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__poster {
+    flex-shrink: 0;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    border: 1px solid $primary;
+    min-height: 400px;
+    width: 300px;
+    max-width: 100%;
+    transition: $transition;
+
+    @media screen and (max-width: $mobileWidth) {
+      width: auto;
+      max-width: 100%;
+      min-height: auto;
+    }
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+
+    &-item {
+      max-width: 300px;
+      text-align: center;
+      font-size: 28px;
+      color: $primary;
+      padding: 4px 8px;
+      border: 1px solid $primary;
+      margin-top: 5px;
+      transition: $transition;
+
+      @media screen and (max-width: 650px) {
+        padding: 5px 10px;
+      }
+
+      b {
+        display: inline-block;
+        margin-right: 7px;
+      }
+    }
+  }
+}
