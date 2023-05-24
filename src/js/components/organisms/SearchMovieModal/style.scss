@@ -1,11 +1,11 @@
-.search-movie-modal {
-  .modal-wrapper {
+.gl-search-movie-modal {
+  .gl-modal__wrapper {
     @media screen and (max-width: 380px) {
       padding: 0 10px;
     }
   }
 
-  .modal-content {
+  .gl-modal__content {
     align-items: center;
     justify-content: center;
     min-width: 350px;
@@ -27,11 +27,11 @@
       justify-content: center;
       width: 100%;
 
-      .label-input-field:not(:last-child) {
+      .gl-label-input-field:not(:last-child) {
         margin-bottom: 35px;
       }
 
-      & > .btn-primary {
+      & > .gl-btn-primary {
         width: 50%;
         border-width: 1px;
 

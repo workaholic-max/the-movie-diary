@@ -1,18 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import InputField from '../../atoms/InputField';
+import Input from '../../atoms/Input';
 
 /**
- * Checkbox + label field
+ * Checkbox input + label field
  */
 const CheckboxField = ({ labelContent, ...props }) => (
-  <div className="checkbox-field">
+  <div className="gl-checkbox-field">
     {labelContent}
 
-    <InputField type="checkbox" {...props} />
+    <Input type="checkbox" {...props} />
 
-    <span className="checkmark" />
+    <span className="gl-checkbox-field__checkmark" />
   </div>
 );
 

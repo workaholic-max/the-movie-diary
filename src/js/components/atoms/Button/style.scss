@@ -1,4 +1,4 @@
-.btn {
+.gl-btn {
   color: $white;
   font-size: 15px;
   font-weight: 400;
@@ -19,18 +19,20 @@
 
   &:disabled,
   &[disabled] {
+    color: $gray;
     opacity: 0.5;
     cursor: not-allowed;
     background-color: transparent;
   }
 
-  &.btn--rounded {
+  &--rounded {
     min-width: 40px;
+    min-height: 40px;
     border-radius: 50%;
-    padding: 0 0 2px 0;
+    padding: 2px 0 0 0;
   }
 
-  &-primary {
+  &--primary {
     border-color: $primary;
 
     &:not(:disabled):not([disabled]) {
@@ -41,7 +43,7 @@
     }
   }
 
-  &-success {
+  &--success {
     border-color: $success;
 
     &:not(:disabled):not([disabled]) {
@@ -52,7 +54,7 @@
     }
   }
 
-  &-warning {
+  &--warning {
     border-color: $warning;
 
     &:not(:disabled):not([disabled]) {

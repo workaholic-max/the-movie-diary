@@ -1,19 +1,18 @@
 import PropTypes from 'prop-types';
 
 export const buttonPropTypes = {
-  className: PropTypes.string,
+  theme: PropTypes.string.isRequired,
   type: PropTypes.string,
+  className: PropTypes.string,
   disabled: PropTypes.bool,
-  disableDefaultClassName: PropTypes.bool,
+  enableRounded: PropTypes.bool,
   onClick: PropTypes.func,
-  onSubmit: PropTypes.func,
 };
 
 export const buttonDefaultProps = {
-  className: '',
   type: 'button',
+  className: '',
   disabled: false,
-  disableDefaultClassName: false,
+  enableRounded: false,
   onClick: () => {},
-  onSubmit: () => {},
 };

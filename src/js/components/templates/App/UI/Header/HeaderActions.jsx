@@ -35,7 +35,7 @@ const HeaderActions = () => {
     // TODO: for not auth
     // eslint-disable-next-line no-constant-condition
     if (false) {
-      return <Button className="btn-primary">Login</Button>;
+      return <Button theme="primary">Login</Button>;
     }
 
     const renderDropdown = () => {
@@ -59,7 +59,8 @@ const HeaderActions = () => {
     return (
       <>
         <Button
-          className={classNames('btn-primary header__actions-hamburger', {
+          theme="primary"
+          className={classNames('header__actions-hamburger', {
             opened: isDropdownOpened,
           })}
           onClick={toggleOpenDropdown}

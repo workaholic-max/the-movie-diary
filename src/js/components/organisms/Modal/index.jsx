@@ -45,12 +45,12 @@ const Modal = ({
   }, []);
 
   return (
-    <div className={classNames('modal', className)}>
-      <div className="modal-wrapper">
-        <div className="modal-content" ref={modalContentRef}>
+    <div className={classNames('gl-modal', className)}>
+      <div className="gl-modal__wrapper">
+        <div className="gl-modal__content" ref={modalContentRef}>
           {enableCloseBtn && (
             <CrossIcon
-              className="modal__cross-btn"
+              className="gl-modal__cross-icon"
               height={22}
               width={22}
               tabIndex={0}

@@ -1,25 +1,16 @@
 .movie-details {
+  flex: 0 0 auto;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: fit-content;
   background-color: $black;
-  padding: 5px;
   border: 1px solid $primary;
   cursor: pointer;
   transition: $transition;
 
   &:not(.movie-details--full):hover {
-    border-color: $white;
-
-    .movie-details__poster {
-      border-color: $white;
-    }
-
-    .movie-details__info-item {
-      color: $white;
-      border-color: $white;
-    }
+    box-shadow: 0 0 10px $primary;
   }
 
   &--full {
@@ -34,9 +25,21 @@
     }
 
     .movie-details__poster {
+      flex-grow: 1;
+      height: auto;
+      min-height: 400px;
+      width: 310px;
       margin-right: 10px;
+      border: 1px solid $primary;
+
+      img {
+        object-fit: contain;
+      }
 
       @media screen and (max-width: $mobileWidth) {
+        width: auto;
+        max-width: 100%;
+        min-height: auto;
         margin-right: 0;
         margin-bottom: 20px;
       }
@@ -45,15 +48,14 @@
     .movie-details__info-item {
       text-align: left;
       font-size: 15px;
-      color: $white;
+      line-height: inherit;
       max-width: 500px;
-
-      &:first-child {
-        margin-top: 0;
-      }
+      padding: 4px 8px;
+      border: 1px solid $primary;
 
       @media screen and (max-width: 650px) {
         max-width: 100%;
+        padding: 5px 10px;
       }
     }
   }
@@ -64,24 +66,15 @@
   }
 
   &__poster {
+    position: relative;
     flex-shrink: 0;
-    flex-grow: 1;
     display: flex;
-    align-items: center;
-    border: 1px solid $primary;
-    min-height: 400px;
-    width: 300px;
+    height: 270px;
+    width: 180px;
     max-width: 100%;
-    transition: $transition;
-
-    @media screen and (max-width: $mobileWidth) {
-      width: auto;
-      max-width: 100%;
-      min-height: auto;
-    }
 
     img {
-      object-fit: contain;
+      object-fit: cover;
     }
   }
 
@@ -92,17 +85,15 @@
     width: 100%;
 
     &-item {
-      max-width: 300px;
+      max-width: 310px;
       text-align: center;
-      font-size: 28px;
-      color: $primary;
-      padding: 4px 8px;
-      border: 1px solid $primary;
-      margin-top: 5px;
-      transition: $transition;
+      font-size: 26px;
+      line-height: 1;
+      padding: 7px 8px;
+      border-top: 1px solid $primary;
 
-      @media screen and (max-width: 650px) {
-        padding: 5px 10px;
+      &:not(:first-child) {
+        margin-top: 5px;
       }
 
       b {

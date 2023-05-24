@@ -1,11 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import classNames from 'classnames';
+
+import MovieTags from '../MovieTags';
 import { MOVIE_INFO_KEYS } from './config';
 
-const MovieDetails = ({ movieData, showFullMovieDetails, children }) => {
-  const renderMoviePoster = () => <img src={movieData.Poster} alt={`${movieData.Title} poster`} />;
+// TODO: move & split
+const MovieDetails = ({
+  movieData, isEditMode, showFullMovieDetails, children,
+}) => {
+  const { Poster, Title, tags } = movieData;
+
+  const renderMoviePoster = () => <img src={Poster} alt={`${Title} poster`} />;
 
   /**
    * @param apiKey {String}
@@ -25,14 +31,6 @@ const MovieDetails = ({ movieData, showFullMovieDetails, children }) => {
 
   const renderMovieInfo = () => MOVIE_INFO_KEYS.map(renderMovieInfoItem);
 
-  const renderMovieDetailsInfo = () => {
-    if (showFullMovieDetails) {
-      return renderMovieInfo();
-    }
-
-    return renderMovieInfoItem({ apiKey: MOVIE_INFO_KEYS[0].apiKey, title: '' });
-  };
-
   return (
     <div
       className={classNames('movie-details', {
@@ -41,21 +39,27 @@ const MovieDetails = ({ movieData, showFullMovieDetails, children }) => {
     >
       <div className="movie-details__poster">{renderMoviePoster()}</div>
 
-      <div className="movie-details__info">
-        {renderMovieDetailsInfo()}
+      {showFullMovieDetails && (
+        <div className="movie-details__info">
+          {renderMovieInfo()}
 
-        {children}
-      </div>
+          {children}
+        </div>
+      )}
+
+      {tags && isEditMode && <MovieTags tags={tags} />}
     </div>
   );
 };
 
 MovieDetails.propTypes = {
   movieData: PropTypes.object.isRequired,
+  isEditMode: PropTypes.bool,
   showFullMovieDetails: PropTypes.bool,
 };
 
 MovieDetails.defaultProps = {
+  isEditMode: false,
   showFullMovieDetails: false,
 };
 

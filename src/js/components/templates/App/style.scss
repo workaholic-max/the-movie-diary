@@ -1,6 +1,7 @@
-.app {
+.gl-app {
   display: flex;
   flex-direction: column;
+  min-height: 100vh;
 
   &-content {
     flex-grow: 1;
@@ -8,7 +9,15 @@
     flex-direction: column;
 
     &__wrapper {
-      padding: 0 15px;
+      padding: 0 5px;
+      flex: 1 1 auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      & > div {
+        flex: 1 1 auto;
+      }
     }
   }
 
@@ -23,6 +32,7 @@
     padding: 20px 25px;
     margin-bottom: 30px;
     border-bottom: 2px solid $primary;
+    z-index: 99;
 
     @media screen and (max-width: $mobileWidth) {
       min-height: 72px;

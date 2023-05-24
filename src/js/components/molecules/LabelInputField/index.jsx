@@ -4,21 +4,25 @@ import classNames from 'classnames';
 
 import { inputPropTypes, inputDefaultProps } from '../../../propTypes/inputProps';
 import Label from '../../atoms/Label';
-import InputField from '../../atoms/InputField';
+import Input from '../../atoms/Input';
 
 /**
  * Label + input field
  */
 const LabelInputField = forwardRef(
-  ({
-    className, id, labelContent, isInputFirst, children, ...inputProps
-  }, ref) => (
+  (
+    {
+      className, id, labelContent, enableInputFirst, enableAnimation, children, ...inputProps
+    },
+    ref,
+  ) => (
     <div
-      className={classNames('label-input-field', className, {
-        'input-first': isInputFirst,
+      className={classNames('gl-label-input-field', className, {
+        'gl-label-input-field--input-first': enableInputFirst,
+        'gl-label-input-field--animated': enableAnimation,
       })}
     >
-      <InputField ref={ref} className="input-text" id={id} {...inputProps} />
+      <Input ref={ref} className="gl-input-text" id={id} {...inputProps} />
 
       <Label htmlFor={id} labelContent={labelContent} />
 
@@ -31,13 +35,15 @@ LabelInputField.propTypes = {
   ...inputPropTypes,
   labelContent: PropTypes.string.isRequired,
   className: PropTypes.string,
-  isInputFirst: PropTypes.bool,
+  enableInputFirst: PropTypes.bool,
+  enableAnimation: PropTypes.bool,
 };
 
 LabelInputField.defaultProps = {
   ...inputDefaultProps,
   className: '',
-  isInputFirst: false,
+  enableInputFirst: false,
+  enableAnimation: false,
 };
 
 export default LabelInputField;

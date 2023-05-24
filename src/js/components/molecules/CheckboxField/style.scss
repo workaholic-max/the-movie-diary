@@ -1,4 +1,4 @@
-.checkbox-field {
+.gl-checkbox-field {
   position: relative;
   padding-left: 30px;
   cursor: pointer;
@@ -44,7 +44,7 @@
     }
   }
 
-  .checkmark {
+  &__checkmark {
     position: absolute;
     top: 0;
     left: 0;

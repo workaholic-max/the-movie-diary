@@ -1,25 +1,19 @@
 import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 import { MoviesStateContextProvider } from '../../../context/MoviesStateContext';
 import { SearchMovieContextProvider } from '../../../context/SearchMovieContext';
-import Header from './UI/Header';
-import AppContentWrapper from './UI/AppContentWrapper';
-import Footer from './UI/Footer';
+import RoutesElements from './UI/RoutesElements';
 
-const App = ({ children }) => (
-  <MoviesStateContextProvider>
-    <SearchMovieContextProvider>
-      <div className="app">
-        <div className="app-content">
-          <Header />
-
-          <AppContentWrapper>{children}</AppContentWrapper>
-        </div>
-
-        <Footer />
-      </div>
-    </SearchMovieContextProvider>
-  </MoviesStateContextProvider>
+// TODO: change project structure
+const App = () => (
+  <Router>
+    <MoviesStateContextProvider>
+      <SearchMovieContextProvider>
+        <RoutesElements />
+      </SearchMovieContextProvider>
+    </MoviesStateContextProvider>
+  </Router>
 );
 
 export default App;

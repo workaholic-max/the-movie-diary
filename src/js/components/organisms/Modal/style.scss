@@ -1,4 +1,4 @@
-.modal {
+.gl-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -11,7 +11,7 @@
   overflow-y: auto;
   z-index: 99;
 
-  &-wrapper {
+  &__wrapper {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -24,7 +24,7 @@
     }
   }
 
-  &-content {
+  &__content {
     position: relative;
     display: flex;
     flex-direction: column;
@@ -36,7 +36,7 @@
     max-height: 100vh;
   }
 
-  &__cross-btn {
+  &__cross-icon {
     position: absolute;
     top: 5px;
     right: 5px;

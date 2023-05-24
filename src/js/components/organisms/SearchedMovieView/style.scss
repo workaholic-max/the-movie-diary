@@ -1,11 +1,8 @@
-.searched-movie-view {
-  flex: 1 1 auto;
+.gl-searched-movie-view {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  width: fit-content;
+  align-items: center;
   margin: 0 auto;
-  padding: 5px;
+  padding: 5px 0;
 
   @media screen and (max-width: 650px) {
     width: 100%;
@@ -26,7 +23,7 @@
     }
   }
 
-  &__actions {
+  &__footer {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -37,17 +34,17 @@
     @media screen and (max-width: $mobileWidth) {
       flex-direction: column;
     }
+  }
 
-    &-btns {
-      display: flex;
-      margin-top: 10px;
+  &__actions {
+    display: flex;
+    margin-top: 10px;
 
-      button {
-        font-weight: 300;
+    button {
+      font-weight: 300;
 
-        &:first-child {
-          margin-right: 15px;
-        }
+      &:first-child {
+        margin-right: 15px;
       }
     }
   }

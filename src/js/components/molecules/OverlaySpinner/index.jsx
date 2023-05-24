@@ -1,5 +1,5 @@
 import React from 'react';
 
-const OverlaySpinner = () => <div className="overlay-spinner"><span /></div>;
+const OverlaySpinner = () => <div className="gl-overlay-spinner"><span /></div>;
 
 export default OverlaySpinner;

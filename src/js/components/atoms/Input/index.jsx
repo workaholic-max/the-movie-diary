@@ -1,9 +1,9 @@
 import React, { forwardRef } from 'react';
 
-import { inputPropTypes, inputDefaultProps } from '../../../propTypes/inputProps';
 import processEmptyProp from '../../../utils/helpers/processEmptyPropHelper';
+import { inputPropTypes, inputDefaultProps } from '../../../propTypes/inputProps';
 
-const InputField = forwardRef(({
+const Input = forwardRef(({
   id, value, placeholder, isInputUncontrolled, ...props
 }, ref) => (
   <input
@@ -17,7 +17,7 @@ const InputField = forwardRef(({
   />
 ));
 
-InputField.propTypes = inputPropTypes;
-InputField.defaultProps = inputDefaultProps;
+Input.propTypes = inputPropTypes;
+Input.defaultProps = inputDefaultProps;
 
-export default InputField;
+export default Input;

@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 
+import { DEFAULT_MOVIE_TAGS } from '../../../enums/MovieEnums';
 import MoviesStateContext from '../../../context/MoviesStateContext';
 import SearchMovieContext from '../../../context/SearchMovieContext';
 import MovieDetails from '../../molecules/MovieDetails';
@@ -25,7 +26,7 @@ const SearchedMovieView = () => {
   };
 
   const handleAddToDiary = () => {
-    handleAddMovie(searchedMovieData);
+    handleAddMovie({ ...searchedMovieData, tags: DEFAULT_MOVIE_TAGS });
 
     if (isKeepSearchingAfterAdding) {
       handleOpenSearchMovieModal();
@@ -35,10 +36,10 @@ const SearchedMovieView = () => {
   };
 
   return (
-    <div className="searched-movie-view">
-      <div className="searched-movie-view__wrapper">
+    <div className="gl-searched-movie-view">
+      <div className="gl-searched-movie-view__wrapper">
         <MovieDetails movieData={searchedMovieData} showFullMovieDetails>
-          <div className="searched-movie-view__actions">
+          <div className="gl-searched-movie-view__footer gl-searched-movie-view-footer">
             <CheckboxField
               id="keep-searching-after-adding-checkbox"
               labelContent="Keep searching after adding"
@@ -46,12 +47,12 @@ const SearchedMovieView = () => {
               onChange={onChangeKeepSearchingAfterAdding}
             />
 
-            <div className="searched-movie-view__actions-btns">
-              <Button className="btn-warning" onClick={handleOpenSearchMovieModal}>
+            <div className="gl-searched-movie-view__actions">
+              <Button theme="warning" onClick={handleOpenSearchMovieModal}>
                 Keep searching
               </Button>
 
-              <Button className="btn-success" onClick={handleAddToDiary}>
+              <Button theme="success" onClick={handleAddToDiary}>
                 Add to diary
               </Button>
             </div>

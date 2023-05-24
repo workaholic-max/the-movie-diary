@@ -1,0 +1,47 @@
+.movie-tags {
+  width: 100%;
+  min-height: 38px;
+  display: flex;
+  gap: 1px;
+  padding: 1px;
+  border-top: 1px solid $primary;
+
+  &--all .movie-tags__tag {
+    flex: 1 1 33.33%;
+
+    &:last-child {
+      flex: 1 0 auto;
+    }
+  }
+
+  &__tag {
+    min-height: 35px;
+    position: relative;
+    border-width: 1px;
+    font-size: 14px;
+    font-weight: 200;
+    pointer-events: none;
+
+    span {
+      font-weight: 100;
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: inline-block;
+      background-color: $black;
+      padding: 0 3px;
+      border-left: 1px solid $primary;
+      border-bottom: 1px solid $primary;
+      z-index: 2;
+    }
+  }
+
+  &__empty-message {
+    line-height: 1;
+    font-weight: 100;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    padding: 6px 8px;
+  }
+}

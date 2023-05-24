@@ -68,7 +68,7 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
 
   return (
     <Modal
-      className="search-movie-modal"
+      className="gl-search-movie-modal"
       onClose={onClose}
       enableCloseOnEsc={!isSearchingMovie}
       enableCloseOnOverlayClick={!isSearchingMovie}
@@ -80,32 +80,32 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
 
       <form onSubmit={onSearch}>
         <LabelInputField
-          className="animated-text-field"
           labelContent="Movie name"
           type="text"
           id="movie-name"
           placeholder="required"
           value={movieName}
           onChange={onChangeMovieName}
+          enableAnimation
         />
 
         <LabelInputField
-          className="animated-text-field"
           labelContent="Movie year"
           type="text"
           id="movie-year"
           placeholder="optional"
           value={movieYear}
           onChange={onChangeMovieYear}
+          enableAnimation
         />
 
-        <Button className="btn-primary" disabled={isSearchDisabled} type="submit">
+        <Button theme="primary" type="submit" disabled={isSearchDisabled}>
           Search
         </Button>
       </form>
 
       {searchingMovieError && (
-        <div className="search-movie-modal__error">{searchingMovieError}</div>
+        <div className="gl-search-movie-modal__error">{searchingMovieError}</div>
       )}
     </Modal>
   );

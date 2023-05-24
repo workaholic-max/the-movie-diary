@@ -1,10 +1,10 @@
-.label-input-field {
+.gl-label-input-field {
   display: flex;
   flex-direction: column;
   position: relative;
   width: 100%;
 
-  &.animated-text-field {
+  &--animated {
     label {
       position: absolute;
       top: 0;
@@ -41,7 +41,7 @@
     }
   }
 
-  &.input-first {
+  &--input-first {
     & > input {
       order: 0;
     }
