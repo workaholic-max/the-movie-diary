@@ -6,11 +6,11 @@
   font-weight: 200;
   width: fit-content;
 
-  &:hover .checkmark {
+  &:hover .gl-checkbox-field__checkmark {
     box-shadow: 0 0 5px $primary;
   }
 
-  &:has(input[type='checkbox']:checked):hover .checkmark {
+  &:has(input[type='checkbox']:checked):hover .gl-checkbox-field__checkmark {
     box-shadow: 0 0 5px $success;
   }
 
@@ -21,12 +21,12 @@
     z-index: 2;
     cursor: pointer;
 
-    &:checked ~ .checkmark {
+    &:checked ~ .gl-checkbox-field__checkmark {
       background-color: $success;
       border-color: $success;
     }
 
-    &:checked ~ .checkmark:after {
+    &:checked ~ .gl-checkbox-field__checkmark:after {
       content: '';
       position: absolute;
       display: block;
@@ -39,7 +39,7 @@
       transform: rotate(45deg);
     }
 
-    &:focus ~ .checkmark {
+    &:focus ~ .gl-checkbox-field__checkmark {
       box-shadow: 0 0 5px $primary;
     }
   }

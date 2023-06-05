@@ -2,12 +2,11 @@ import React, { useState, useMemo, useEffect } from 'react';
 
 const MoviesStateContext = React.createContext({});
 
-// TODO: for handleAddMovie, handleDeleteMovie, handleUpdateMovie
 // TODO: also need to add movie to firebase (so show overlay spinner)
 // TODO: maybe spinner inside button so he can't again click and show pending process
 
 export const MoviesStateContextProvider = ({ children }) => {
-  const [movies, setMovies] = useState([]);
+  const [movieDiary, setMovieDiary] = useState([]);
   // eslint-disable-next-line no-unused-vars
   const [isPending, setIsPending] = useState(false);
 
@@ -16,13 +15,17 @@ export const MoviesStateContextProvider = ({ children }) => {
    *
    * @return {Number}
    */
-  const getMovieIndex = (movieImdbID) => movies.findIndex(({ imdbID }) => movieImdbID === imdbID);
+  const getMovieIndex = (movieImdbID) =>
+    movieDiary.findIndex(({ imdbID }) => movieImdbID === imdbID);
+
+  const getMovieDiaryDataByImdbID = (movieImdbID) =>
+    movieDiary.find(({ imdbID }) => movieImdbID === imdbID);
 
   /**
    * @param movieData {Object}
    */
   const handleAddMovie = (movieData) => {
-    setMovies((prevState) => [movieData, ...prevState]);
+    setMovieDiary((prevState) => [movieData, ...prevState]);
   };
 
   /**
@@ -31,7 +34,7 @@ export const MoviesStateContextProvider = ({ children }) => {
   const handleDeleteMovie = (movieImdbID) => {
     const movieIndex = getMovieIndex(movieImdbID);
 
-    setMovies((prevState) => [
+    setMovieDiary((prevState) => [
       ...prevState.slice(0, movieIndex),
       ...prevState.slice(movieIndex + 1),
     ]);
@@ -44,31 +47,30 @@ export const MoviesStateContextProvider = ({ children }) => {
   const handleUpdateMovie = (movieImdbID, updatedData) => {
     const movieIndex = getMovieIndex(movieImdbID);
 
-    const updatedMovie = {
-      ...movies[movieIndex],
-      ...updatedData,
-    };
+    setMovieDiary((prevState) => {
+      const updatedMovie = {
+        ...prevState[movieIndex],
+        ...updatedData,
+      };
 
-    setMovies((prevState) => [
-      ...prevState.slice(0, movieIndex),
-      updatedMovie,
-      ...prevState.slice(movieIndex + 1),
-    ]);
+      return [...prevState.slice(0, movieIndex), updatedMovie, ...prevState.slice(movieIndex + 1)];
+    });
   };
 
   const providerValue = useMemo(
     () => ({
-      movies,
+      movieDiary,
+      getMovieDiaryDataByImdbID,
       handleAddMovie,
       handleDeleteMovie,
       handleUpdateMovie,
     }),
-    [movies, handleAddMovie, handleDeleteMovie, handleUpdateMovie],
+    [movieDiary, getMovieDiaryDataByImdbID, handleAddMovie, handleDeleteMovie, handleUpdateMovie],
   );
 
   // TODO: need to get movies from firebase
   useEffect(() => {
-    setMovies([]);
+    setMovieDiary([]);
   }, []);
 
   return (

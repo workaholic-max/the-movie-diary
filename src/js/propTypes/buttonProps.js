@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 
 export const buttonPropTypes = {
-  theme: PropTypes.string.isRequired,
+  theme: PropTypes.oneOf(['primary', 'success', 'warning']).isRequired,
   type: PropTypes.string,
   className: PropTypes.string,
   disabled: PropTypes.bool,

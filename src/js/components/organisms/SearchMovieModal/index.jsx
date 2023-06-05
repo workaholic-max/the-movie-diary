@@ -2,24 +2,24 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import Modal from '../Modal';
-import OverlaySpinner from '../../molecules/OverlaySpinner';
 import LabelInputField from '../../molecules/LabelInputField';
+import OverlaySpinner from '../../atoms/OverlaySpinner';
 import Button from '../../atoms/Button';
 
 const SearchMovieModal = ({ onSubmit, onClose }) => {
-  const [movieName, setMovieName] = useState('');
+  const [movieTitle, setMovieTitle] = useState('');
   const [movieYear, setMovieYear] = useState('');
   const [isSearchingMovie, setIsSearchingMovie] = useState(false);
   const [searchingMovieError, setSearchingMovieError] = useState(null);
 
   const isSearchDisabled =
-    movieName.trim().length === 0 || searchingMovieError !== null || isSearchingMovie;
+    movieTitle.trim().length === 0 || searchingMovieError !== null || isSearchingMovie;
 
   /**
    * @param event {InputEvent}
    */
-  const onChangeMovieName = (event) => {
-    setMovieName(event.target.value);
+  const onChangeMovieTitle = (event) => {
+    setMovieTitle(event.target.value);
 
     setSearchingMovieError(null);
   };
@@ -54,7 +54,7 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
       setIsSearchingMovie(true);
 
       const payload = {
-        movieName,
+        movieTitle,
       };
 
       // TODO: need to add validation to not be able to submit while invalid year
@@ -80,12 +80,12 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
 
       <form onSubmit={onSearch}>
         <LabelInputField
-          labelContent="Movie name"
+          labelContent="Movie title"
           type="text"
-          id="movie-name"
+          id="movie-title"
           placeholder="required"
-          value={movieName}
-          onChange={onChangeMovieName}
+          value={movieTitle}
+          onChange={onChangeMovieTitle}
           enableAnimation
         />
 

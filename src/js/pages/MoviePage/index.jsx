@@ -1,38 +1,43 @@
 import React, { useContext } from 'react';
+import { Navigate, useParams } from 'react-router-dom';
 
 import MoviesStateContext from '../../context/MoviesStateContext';
 import SearchMovieContext from '../../context/SearchMovieContext';
-import MovieDetails from '../../components/molecules/MovieDetails';
-import SortFilterPanel from '../../components/molecules/SortFilterPanel';
+import MovieDetails from './UI/MovieDetails';
+import UnlistedMovieActions from './UI/UnlistedMovieActions';
 
-const HomePage = () => {
-  const { movies } = useContext(MoviesStateContext);
+// TODO: check every component to have same structure (gl..)
+// TODO: create ListedMovieActions
+const MoviePage = () => {
+  const { getMovieDiaryDataByImdbID } = useContext(MoviesStateContext);
 
-  const { handleOpenSearchMovieModal } = useContext(SearchMovieContext);
+  const { searchedMovieData } = useContext(SearchMovieContext);
 
-  const renderMoviesDetails = () =>
-    movies.map((movieData) => <MovieDetails key={movieData.imdbID} movieData={movieData} />);
+  const { imdbID } = useParams();
 
-  const renderContent = () => {
-    if (movies.length === 0) {
-      return (
-        <div className="get-started-content">
-          To get started, you can <span onClick={handleOpenSearchMovieModal}>search</span> for your
-          favorite movies and add them to your diary.
-        </div>
-      );
+  const movieDiaryData = getMovieDiaryDataByImdbID(imdbID);
+  const currentMovieData = movieDiaryData || searchedMovieData;
+
+  const renderMovieActions = () => {
+    const isMovieListed = !!movieDiaryData;
+
+    if (isMovieListed) {
+      return 'listed';
     }
 
-    return (
-      <>
-        {false && <SortFilterPanel />}
-
-        {renderMoviesDetails()}
-      </>
-    );
+    return <UnlistedMovieActions />;
   };
 
-  return <div className="home-page">{renderContent()}</div>;
+  // TODO: dd feature to load movie by imdbID
+  if (!currentMovieData) {
+    return <Navigate to="/" replace />;
+  }
+
+  return (
+    <div className="gl-movie-page">
+      <MovieDetails movieData={currentMovieData}>{renderMovieActions()}</MovieDetails>
+    </div>
+  );
 };
 
-export default HomePage;
+export default MoviePage;

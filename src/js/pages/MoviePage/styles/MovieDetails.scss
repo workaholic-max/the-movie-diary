@@ -1,0 +1,71 @@
+.movie-details {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: stretch;
+  width: fit-content;
+  background-color: $black;
+  padding: 10px;
+  border: 1px solid $primary;
+  transition: $transition;
+
+  @media screen and (max-width: 650px) {
+    padding: 15px 10px;
+    width: 100%;
+  }
+
+  @media screen and (max-width: $mobileWidth) {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &__poster {
+    flex-grow: 1;
+    display: flex;
+    max-width: 100%;
+    height: auto;
+    min-height: 400px;
+    width: 310px;
+    margin-right: 10px;
+    border: 1px solid $primary;
+
+    @media screen and (max-width: $mobileWidth) {
+      width: auto;
+      max-width: 100%;
+      min-height: auto;
+      margin-right: 0;
+      margin-bottom: 20px;
+    }
+
+    img {
+      object-fit: contain;
+    }
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: fit-content;
+
+    &-item {
+      max-width: 500px;
+      font-size: 15px;
+      padding: 4px 8px;
+      border: 1px solid $primary;
+
+      &:not(:first-child) {
+        margin-top: 5px;
+      }
+
+      @media screen and (max-width: 650px) {
+        max-width: 100%;
+        padding: 5px 10px;
+      }
+
+      b {
+        display: inline-block;
+        margin-right: 7px;
+      }
+    }
+  }
+}

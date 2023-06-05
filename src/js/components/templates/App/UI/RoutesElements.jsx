@@ -2,7 +2,8 @@ import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 import HomePage from '../../../../pages/HomePage';
-import AppContentWrapper from './AppContentWrapper';
+import MoviePage from '../../../../pages/MoviePage';
+import Layout from './Layout';
 
 const RoutesElements = () => (
   <Routes>
@@ -10,14 +11,21 @@ const RoutesElements = () => (
 
     {/* <Route path="/:userId" element={null} /> */}
 
-    <Route path="/movie/:imdbID" element={<AppContentWrapper>nud</AppContentWrapper>} />
+    <Route
+      path="/movie/:imdbID"
+      element={(
+        <Layout>
+          <MoviePage />
+        </Layout>
+      )}
+    />
 
     <Route
       path="/"
       element={(
-        <AppContentWrapper>
+        <Layout>
           <HomePage />
-        </AppContentWrapper>
+        </Layout>
       )}
     />
 

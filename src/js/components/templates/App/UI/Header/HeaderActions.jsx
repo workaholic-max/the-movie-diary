@@ -1,8 +1,8 @@
 import React, {
   useState, useCallback, useRef, useContext,
 } from 'react';
-
 import classNames from 'classnames';
+
 import SearchMovieContext from '../../../../../context/SearchMovieContext';
 import useOnClickOutside from '../../../../../hooks/useOnClickOutside';
 import Button from '../../../../atoms/Button';
@@ -44,14 +44,14 @@ const HeaderActions = () => {
       }
 
       return (
-        <div className="header__actions-dropdown header-actions-dropdown">
-          <div className="header-actions-dropdown__option" onClick={onOpenFindMovieModal}>
+        <div className="gl-header-actions-dropdown">
+          <div className="gl-header-actions-dropdown__option" onClick={onOpenFindMovieModal}>
             Find a movie
           </div>
 
-          <div className="header-actions-dropdown__option">Get 'share link'</div>
+          {/* <div className="header-actions-dropdown__option">Get 'share link'</div> */}
 
-          <div className="header-actions-dropdown__option">Logout</div>
+          <div className="gl-header-actions-dropdown__option">Logout</div>
         </div>
       );
     };
@@ -60,8 +60,8 @@ const HeaderActions = () => {
       <>
         <Button
           theme="primary"
-          className={classNames('header__actions-hamburger', {
-            opened: isDropdownOpened,
+          className={classNames('gl-header-actions__hamburger', {
+            'gl-header-actions__hamburger--opened': isDropdownOpened,
           })}
           onClick={toggleOpenDropdown}
         >
@@ -80,7 +80,7 @@ const HeaderActions = () => {
   useOnClickOutside(rootRef, handleCloseDropdown);
 
   return (
-    <div className="header__actions" ref={rootRef}>
+    <div className="gl-header-actions" ref={rootRef}>
       {renderActions()}
     </div>
   );
