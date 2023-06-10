@@ -73,3 +73,11 @@ img {
   width: 100%;
   text-align: center;
 }
+
+svg {
+  transition: $transition;
+
+  * {
+    transition: $transition;
+  }
+}

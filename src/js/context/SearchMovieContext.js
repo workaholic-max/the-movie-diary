@@ -10,7 +10,6 @@ const SearchMovieContext = React.createContext({});
 export const SearchMovieContextProvider = ({ children }) => {
   const [isSearchMovieModalOpened, setIsSearchMovieModalOpened] = useState(false);
   const [searchedMovieData, setSearchedMovieData] = useState(null);
-  const [isKeepSearchingAfterAdding, setIsKeepSearchingAfterAdding] = useState(false);
 
   const { getMovieDiaryDataByImdbID } = useContext(MoviesStateContext);
 
@@ -31,6 +30,11 @@ export const SearchMovieContextProvider = ({ children }) => {
     setSearchedMovieData(null);
   };
 
+  /**
+   * @param payload {Object}
+   * @param handleErrorResponse {Function}
+   * @param handleStopLoading {Function}
+   */
   const handleSearchMovie = (payload, handleErrorResponse, handleStopLoading) => {
     sendSearchMovieRequestAPI(payload)
       .then((movieData) => {
@@ -63,18 +67,10 @@ export const SearchMovieContextProvider = ({ children }) => {
   const providerValue = useMemo(
     () => ({
       searchedMovieData,
-      isKeepSearchingAfterAdding,
-      setIsKeepSearchingAfterAdding,
       handleOpenSearchMovieModal,
       handleResetSearchedMovieData,
     }),
-    [
-      searchedMovieData,
-      isKeepSearchingAfterAdding,
-      setIsKeepSearchingAfterAdding,
-      handleOpenSearchMovieModal,
-      handleResetSearchedMovieData,
-    ],
+    [searchedMovieData, handleOpenSearchMovieModal, handleResetSearchedMovieData],
   );
 
   return (

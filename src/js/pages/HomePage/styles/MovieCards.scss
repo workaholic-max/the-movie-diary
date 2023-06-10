@@ -1,0 +1,103 @@
+.gl-movie-cards {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  &:not(:last-child) {
+    margin-bottom: 50px;
+  }
+
+  &__info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  &__card {
+    display: flex;
+    position: relative;
+
+    &:hover {
+      &::after {
+        background-color: rgba($black, 0.5);
+      }
+
+      .gl-listed-movie-actions {
+        opacity: 1;
+        z-index: 3;
+        pointer-events: auto;
+      }
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-color: transparent;
+      transition: $transition;
+      pointer-events: none;
+      user-select: none;
+      z-index: 2;
+    }
+
+    &-poster {
+      display: flex;
+      text-align: center;
+
+      img {
+        height: 225px;
+      }
+
+      &--invalid {
+        color: $white;
+        padding: 15px;
+        background-color: gray;
+
+        img {
+          width: 135px;
+        }
+      }
+    }
+  }
+
+  .gl-listed-movie-actions {
+    background-color: $black;
+    flex-direction: column;
+    width: fit-content;
+    gap: 5px;
+    border: 1px solid rgba($primary, 0.5);
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    padding: 5px;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: $transition;
+
+    .gl-btn {
+      margin-right: 0;
+      min-width: 35px;
+      width: 35px;
+      min-height: 35px;
+      height: 35px;
+
+      svg {
+        width: 22px;
+        height: 22px;
+      }
+
+      &--warning {
+        order: 4;
+        margin-top: auto;
+
+        svg {
+          width: 20px;
+          height: 20px;
+        }
+      }
+    }
+  }
+}

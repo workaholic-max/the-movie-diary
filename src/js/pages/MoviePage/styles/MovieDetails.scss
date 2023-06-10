@@ -3,19 +3,14 @@
   display: flex;
   align-items: stretch;
   width: fit-content;
-  background-color: $black;
-  padding: 10px;
-  border: 1px solid $primary;
-  transition: $transition;
-
-  @media screen and (max-width: 650px) {
-    padding: 15px 10px;
-    width: 100%;
-  }
 
   @media screen and (max-width: $mobileWidth) {
     flex-direction: column;
     align-items: center;
+  }
+
+  @media screen and (max-width: 650px) {
+    padding: 15px 10px;
   }
 
   &__poster {
@@ -25,20 +20,27 @@
     height: auto;
     min-height: 400px;
     width: 310px;
-    margin-right: 10px;
-    border: 1px solid $primary;
 
     @media screen and (max-width: $mobileWidth) {
       width: auto;
       max-width: 100%;
       min-height: auto;
-      margin-right: 0;
-      margin-bottom: 20px;
+      margin-bottom: 15px;
     }
 
     img {
-      object-fit: contain;
+      object-fit: cover;
     }
+  }
+
+  &__title {
+    text-align: center;
+    max-width: 500px;
+    line-height: 1;
+    font-size: 28px;
+    font-weight: 400;
+    padding: 0 30px 15px 30px;
+    border-bottom: 1px solid rgba($primary, 0.5);
   }
 
   &__list {
@@ -46,20 +48,25 @@
     flex-direction: column;
     justify-content: space-between;
     width: fit-content;
+    padding-left: 15px;
+
+    @media screen and (max-width: $mobileWidth) {
+      padding: 0;
+    }
+
+    &-items {
+      margin: 10px 0;
+    }
 
     &-item {
       max-width: 500px;
       font-size: 15px;
-      padding: 4px 8px;
-      border: 1px solid $primary;
+      padding: 4px 12px;
+      border-left: none;
+      font-weight: 200;
 
       &:not(:first-child) {
         margin-top: 5px;
-      }
-
-      @media screen and (max-width: 650px) {
-        max-width: 100%;
-        padding: 5px 10px;
       }
 
       b {

@@ -3,6 +3,13 @@
   flex-direction: column;
   min-height: 100vh;
 
+  .gl-container {
+    max-width: 1350px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 10px;
+  }
+
   @import './Layout.scss';
   @import './Header.scss';
   @import './Footer.scss';

@@ -3,11 +3,10 @@ import { Navigate, useParams } from 'react-router-dom';
 
 import MoviesStateContext from '../../context/MoviesStateContext';
 import SearchMovieContext from '../../context/SearchMovieContext';
+import ListedMovieActions from '../../components/organisms/ListedMovieActions';
 import MovieDetails from './UI/MovieDetails';
 import UnlistedMovieActions from './UI/UnlistedMovieActions';
 
-// TODO: check every component to have same structure (gl..)
-// TODO: create ListedMovieActions
 const MoviePage = () => {
   const { getMovieDiaryDataByImdbID } = useContext(MoviesStateContext);
 
@@ -22,13 +21,19 @@ const MoviePage = () => {
     const isMovieListed = !!movieDiaryData;
 
     if (isMovieListed) {
-      return 'listed';
+      return (
+        <ListedMovieActions
+          movieImdbID={currentMovieData.imdbID}
+          movieStatuses={currentMovieData.statuses}
+          enableActionTitle
+        />
+      );
     }
 
     return <UnlistedMovieActions />;
   };
 
-  // TODO: dd feature to load movie by imdbID
+  // TODO: add feature to load movie by imdbID
   if (!currentMovieData) {
     return <Navigate to="/" replace />;
   }

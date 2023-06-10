@@ -1,0 +1,119 @@
+.gl-listed-movie-actions {
+  display: flex;
+  width: 100%;
+  padding-top: 10px;
+  border-top: 1px solid rgba($primary, 0.5);
+
+  .gl-btn {
+    position: relative;
+    width: 45px;
+    height: 45px;
+    border: 1px solid transparent;
+
+    &:hover .gl-listed-movie-actions__title {
+      opacity: 1;
+      z-index: 2;
+      right: calc(100% + 15px);
+    }
+
+    &:not(.gl-btn--warning):not(:last-child) {
+      margin-right: 15px;
+
+      @media screen and (max-width: 500px) {
+        margin-right: 10px;
+      }
+    }
+
+    .gl-icon {
+      display: flex;
+      width: 28px;
+      height: 28px;
+
+      &--watched,
+      &--wishlist {
+        padding-bottom: 2px;
+      }
+
+      &--wishlist {
+        padding-left: 1px;
+      }
+    }
+
+    &--primary {
+      .gl-icon {
+        &--watched path {
+          fill: $primary;
+        }
+
+        path,
+        rect,
+        line {
+          stroke: $primary;
+        }
+
+        circle {
+          fill: $primary;
+        }
+      }
+    }
+
+    &--success {
+      .gl-icon {
+        &--favorite path {
+          fill: $success;
+        }
+
+        &--watched path {
+          fill: $success;
+        }
+
+        path,
+        rect,
+        line {
+          stroke: $success;
+        }
+
+        circle {
+          fill: $success;
+        }
+      }
+    }
+
+    &--warning {
+      margin-right: auto;
+
+      .gl-icon--delete {
+        width: 24px;
+        height: 24px;
+
+        path {
+          fill: $warning;
+          stroke: transparent;
+        }
+      }
+    }
+  }
+
+  // TODO: for mobile show this as notification
+  &__title {
+    opacity: 0;
+    z-index: -1;
+    position: absolute;
+    top: 50%;
+    right: 85%;
+    transform: translateY(-50%);
+    background-color: $primary;
+    width: max-content;
+    border-radius: 5px;
+    padding: 9px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
+    pointer-events: none;
+    transition: $transition;
+
+    @media screen and (max-width: 500px) {
+      max-width: 125px;
+    }
+  }
+}

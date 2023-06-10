@@ -11,13 +11,18 @@ export const MoviesStateContextProvider = ({ children }) => {
   const [isPending, setIsPending] = useState(false);
 
   /**
-   * @param movieImdbID {Number}
+   * @param movieImdbID {String}
    *
    * @return {Number}
    */
   const getMovieIndex = (movieImdbID) =>
     movieDiary.findIndex(({ imdbID }) => movieImdbID === imdbID);
 
+  /**
+   * @param movieImdbID {String}
+   *
+   * @return {Object}
+   */
   const getMovieDiaryDataByImdbID = (movieImdbID) =>
     movieDiary.find(({ imdbID }) => movieImdbID === imdbID);
 
@@ -29,7 +34,7 @@ export const MoviesStateContextProvider = ({ children }) => {
   };
 
   /**
-   * @param movieImdbID {Number}
+   * @param movieImdbID {String}
    */
   const handleDeleteMovie = (movieImdbID) => {
     const movieIndex = getMovieIndex(movieImdbID);
@@ -41,7 +46,7 @@ export const MoviesStateContextProvider = ({ children }) => {
   };
 
   /**
-   * @param movieImdbID {Number}
+   * @param movieImdbID {String}
    * @param updatedData {Object}
    */
   const handleUpdateMovie = (movieImdbID, updatedData) => {

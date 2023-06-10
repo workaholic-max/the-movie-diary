@@ -71,6 +71,7 @@ module.exports = {
     'jsx-a11y/media-has-caption': NONE,
     'react/sort-comp': NONE,
     'jsx-a11y/no-static-element-interactions': NONE,
+    'jsx-a11y/no-noninteractive-element-interactions': NONE,
     'react/jsx-props-no-spreading': NONE,
     'react/prop-types': [ERROR, { ignore: ['children'] }],
     'react/require-default-props': ERROR,

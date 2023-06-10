@@ -1,12 +1,15 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-import HeaderActions from './HeaderActions';
+import NavigationMenu from './NavigationMenu';
 
 const Header = () => (
   <header className="gl-header">
-    <h1 className="gl-header__logo">The Movie Diary</h1>
+    <Link to="/" className="gl-header__logo">
+      <h1>The Movie Diary</h1>
+    </Link>
 
-    <HeaderActions />
+    <NavigationMenu />
   </header>
 );
 

@@ -1,7 +1,6 @@
 .gl-btn {
   color: $white;
   font-size: 15px;
-  font-weight: 400;
   background-color: $black;
   display: inline-flex;
   align-items: center;
@@ -9,7 +8,7 @@
   min-height: 40px;
   min-width: 90px;
   border: 2px solid $white;
-  padding: 8px 16px;
+  padding: 8px 20px;
   line-height: 1;
   transition: $transition;
 
@@ -20,9 +19,11 @@
   &:disabled,
   &[disabled] {
     color: $gray;
+    font-weight: 200;
     opacity: 0.5;
     cursor: not-allowed;
     background-color: transparent;
+    border-width: 1px;
   }
 
   &--rounded {
