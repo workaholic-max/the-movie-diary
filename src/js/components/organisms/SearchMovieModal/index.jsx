@@ -101,9 +101,13 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
           enableAnimation
         />
 
-        <Button theme="primary" type="submit" disabled={isSearchDisabled}>
-          Search
-        </Button>
+        <div className="gl-search-movie-modal__footer">
+          <Button theme="primary" onClick={onClose}>Cancel</Button>
+
+          <Button theme="primary" type="submit" disabled={isSearchDisabled}>
+            Search
+          </Button>
+        </div>
       </form>
 
       {searchingMovieError && (

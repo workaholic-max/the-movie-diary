@@ -6,4 +6,19 @@
   .swiper-slide {
     width: fit-content;
   }
+
+  &-arrow {
+    min-width: 45px;
+    min-height: 45px;
+    width: 45px;
+    height: 45px;
+
+    &--next {
+      margin-left: 5px;
+
+      .gl-icon--swiper-arrow-prev {
+        transform: rotate(180deg);
+      }
+    }
+  }
 }

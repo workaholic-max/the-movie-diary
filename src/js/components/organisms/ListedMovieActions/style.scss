@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   padding-top: 10px;
-  border-top: 1px solid rgba($primary, 0.5);
+  border-top: 1px solid rgba($secondary, 0.5);
 
   .gl-btn {
     position: relative;
@@ -10,10 +10,12 @@
     height: 45px;
     border: 1px solid transparent;
 
-    &:hover .gl-listed-movie-actions__title {
-      opacity: 1;
-      z-index: 2;
-      right: calc(100% + 15px);
+    @media screen  and (min-width: $mobileWidth){
+      &:hover .gl-listed-movie-actions__title {
+        opacity: 1;
+        z-index: 2;
+        right: calc(100% + 15px);
+      }
     }
 
     &:not(.gl-btn--warning):not(:last-child) {
@@ -102,7 +104,7 @@
     top: 50%;
     right: 85%;
     transform: translateY(-50%);
-    background-color: $primary;
+    background-color: $secondary;
     width: max-content;
     border-radius: 5px;
     padding: 9px;

@@ -2,7 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const SwiperArrowPrevIcon = (props) => (
-  <svg className="gl-icon gl-icon--swiper-arrow-prev" xmlns="http://www.w3.org/2000/svg" {...props}>
+  <svg
+    className="gl-icon gl-icon--swiper-arrow-prev"
+    xmlns="http://www.w3.org/2000/svg"
+    fill="none"
+    {...props}
+  >
     <polyline points="16,4 8,12 16,20" stroke="currentColor" />
   </svg>
 );

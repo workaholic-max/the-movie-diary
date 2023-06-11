@@ -3,15 +3,14 @@
   justify-content: space-between;
   width: 100%;
   padding-top: 15px;
-  border-top: 1px solid rgba($primary, 0.5);
-  overflow: hidden;
+  border-top: 1px solid rgba($secondary, 0.5);
 
   button {
     font-weight: 300;
-    border-radius: 100px;
 
     &:last-child {
-      background-color: $primary;
+      font-weight: 400;
+      background-color: $secondary;
     }
   }
 }

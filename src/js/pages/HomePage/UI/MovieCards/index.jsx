@@ -8,20 +8,20 @@ import ListedMovieActions from '../../../../components/organisms/ListedMovieActi
 import { SwiperArrowNext, SwiperArrowPrev } from '../../../../components/atoms/SwiperArrows';
 import { SLIDER_SETTINGS } from './config';
 
-const MovieCards = ({ title, movieList, filterCallback }) => {
-  const filteredMovieList = movieList.filter(filterCallback);
-
+const MovieCards = ({ title, movieList }) => {
   const swiperArrowPrevRef = useRef(null);
   const swiperArrowNextRef = useRef(null);
+
+  const isMovieListEmpty = movieList.length === 0;
 
   const renderMovieCardsInfo = () => (
     <div className="gl-movie-cards__info">
       <h2 className="gl-movie-cards__title">{title}</h2>
 
       <div className="gl-movie-cards__swiper-arrows">
-        <SwiperArrowPrev ref={swiperArrowPrevRef} />
+        <SwiperArrowPrev ref={swiperArrowPrevRef} disabled={isMovieListEmpty} />
 
-        <SwiperArrowNext ref={swiperArrowNextRef} />
+        <SwiperArrowNext ref={swiperArrowNextRef} disabled={isMovieListEmpty} />
       </div>
     </div>
   );
@@ -54,7 +54,7 @@ const MovieCards = ({ title, movieList, filterCallback }) => {
     );
   };
 
-  const renderMovieCards = () => filteredMovieList.map(renderMovieCard);
+  const renderMovieCards = () => movieList.map(renderMovieCard);
 
   const renderMovieCardsSlider = () => (
     <SwiperSlider
@@ -75,15 +75,21 @@ const MovieCards = ({ title, movieList, filterCallback }) => {
     </SwiperSlider>
   );
 
-  if (filteredMovieList.length === 0) {
-    return null;
-  }
+  const renderMovieCardsEmpty = () => (
+    <span>
+      There are no movies in your diary that match status {title.toLowerCase()}.
+    </span>
+  );
 
   return (
-    <div className="gl-movie-cards">
+    <div
+      className={classNames('gl-movie-cards', {
+        'gl-movie-cards--empty': isMovieListEmpty,
+      })}
+    >
       {renderMovieCardsInfo()}
 
-      {renderMovieCardsSlider()}
+      {isMovieListEmpty ? renderMovieCardsEmpty() : renderMovieCardsSlider()}
     </div>
   );
 };
@@ -91,7 +97,6 @@ const MovieCards = ({ title, movieList, filterCallback }) => {
 MovieCards.propTypes = {
   title: PropTypes.string.isRequired,
   movieList: PropTypes.array.isRequired,
-  filterCallback: PropTypes.func.isRequired,
 };
 
 export default MovieCards;

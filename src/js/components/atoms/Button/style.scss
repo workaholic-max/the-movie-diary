@@ -1,13 +1,14 @@
 .gl-btn {
   color: $white;
   font-size: 15px;
-  background-color: $black;
+  background-color: transparent;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   min-height: 40px;
-  min-width: 90px;
-  border: 2px solid $white;
+  min-width: 120px;
+  border: 1px solid $white;
+  border-radius: 25px;
   padding: 8px 20px;
   line-height: 1;
   transition: $transition;
@@ -40,6 +41,17 @@
       &:hover,
       &:focus {
         box-shadow: 0 0 5px 2px $primary;
+      }
+    }
+  }
+
+  &--secondary {
+    border-color: $secondary;
+
+    &:not(:disabled):not([disabled]) {
+      &:hover,
+      &:focus {
+        box-shadow: 0 0 5px 2px $secondary;
       }
     }
   }

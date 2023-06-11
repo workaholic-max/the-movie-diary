@@ -3,15 +3,29 @@
   flex-direction: column;
   width: 100%;
 
+  &--empty {
+    span {
+      font-weight: 200;
+      margin-bottom: 20px;
+      padding-left: 20px;
+    }
+
+    .gl-btn {
+      opacity: 0.5;
+    }
+  }
+
   &:not(:last-child) {
-    margin-bottom: 50px;
+    margin-bottom: 10px;
   }
 
   &__info {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
+    background-color: $secondary;
+    padding: 7px 20px;
   }
 
   &__card {
@@ -66,7 +80,7 @@
     flex-direction: column;
     width: fit-content;
     gap: 5px;
-    border: 1px solid rgba($primary, 0.5);
+    border: 1px solid rgba($secondary, 0.5);
     position: absolute;
     right: 0;
     top: 0;

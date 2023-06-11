@@ -1,5 +1,6 @@
 .gl-input-text {
-  border: 1px solid $primary;
+  border: 1px solid $secondary;
+  border-radius: 5px;
 
   &:hover,
   &:focus {
