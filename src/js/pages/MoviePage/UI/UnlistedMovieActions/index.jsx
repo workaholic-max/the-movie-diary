@@ -22,11 +22,11 @@ const UnlistedMovieActions = () => {
 
   return (
     <div className="gl-unlisted-movie-actions">
-      <Button theme="secondary" onClick={handleOpenSearchMovieModal}>
+      <Button theme="primary" onClick={handleOpenSearchMovieModal}>
         Keep searching
       </Button>
 
-      <Button theme="secondary" onClick={handleAddToDiary}>
+      <Button theme="primary" onClick={handleAddToDiary}>
         Add to diary
       </Button>
     </div>

@@ -2,7 +2,7 @@
   display: flex;
   width: 100%;
   padding-top: 10px;
-  border-top: 1px solid rgba($secondary, 0.5);
+  border-top: 1px solid $secondary;
 
   .gl-btn {
     position: relative;
@@ -30,6 +30,7 @@
       display: flex;
       width: 28px;
       height: 28px;
+      fill: none;
 
       &--watched,
       &--wishlist {
