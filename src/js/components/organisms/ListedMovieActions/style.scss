@@ -10,7 +10,7 @@
     height: 45px;
     border: 1px solid transparent;
 
-    @media screen  and (min-width: $mobileWidth){
+    @media screen  and (min-width: $mobileWidth) {
       &:hover .gl-listed-movie-actions__title {
         opacity: 1;
         z-index: 2;
