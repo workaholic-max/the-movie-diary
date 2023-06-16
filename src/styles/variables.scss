@@ -1,10 +1,9 @@
 // Colors
 $white: #FFF;
-
 $black: #000;
 $gray: #B3B3B3;
-$primary: #4e4e4e;
-$secondary: #212121;
+$primary: #4e4e4e; // TODO: set #282e33
+$secondary: #212121; // TODO: set #22272b
 $success: #41b883;
 $warning: #d4273b;
 
@@ -16,4 +15,6 @@ $tabletWidth: 1195px;
 $mobileWidth: 767px;
 
 // Styles
+// TODO: create borderStyle #404b55
+// TODO: create borderStyle-half #404b55
 $transition: 0.2s linear;

@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useContext } from 'react';
-
 import { useNavigate } from 'react-router-dom';
+
 import { sendSearchMovieRequestAPI } from '../utils/api/searchMovieIAPI';
 import MoviesStateContext from './MoviesStateContext';
 import SearchMovieModal from '../components/organisms/SearchMovieModal';
