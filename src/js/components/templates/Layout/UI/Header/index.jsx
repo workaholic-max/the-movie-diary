@@ -12,7 +12,9 @@ const Header = () => {
 
   return (
     <header className="gl-header">
-      <h1 className="gl-header__logo">The Movie Diary</h1>
+      <Link to="/" className="gl-header__link">
+        <h1 className="gl-header__logo">The Movie Diary</h1>
+      </Link>
 
       <div className="gl-header__links">
         <Link to="/" className="gl-header__link">

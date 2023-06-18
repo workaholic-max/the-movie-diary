@@ -113,6 +113,7 @@
     font-weight: 400;
     text-align: center;
     pointer-events: none;
+    user-select: none;
     transition: $transition;
 
     @media screen and (max-width: 500px) {
