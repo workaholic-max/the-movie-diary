@@ -7,6 +7,7 @@ import SearchMovieContext from '../../context/SearchMovieContext';
 import Layout from '../../components/templates/Layout';
 import ListedMovieActions from '../../components/organisms/ListedMovieActions';
 import OverlaySpinner from '../../components/atoms/OverlaySpinner';
+import Button from '../../components/atoms/Button';
 import MovieDetails from './UI/MovieDetails';
 import UnlistedMovieActions from './UI/UnlistedMovieActions';
 
@@ -24,19 +25,21 @@ const MoviePage = () => {
   const movieDiaryData = getMovieDiaryDataByImdbID(imdbID);
   const currentMovieData = movieDiaryData || searchedMovieData;
 
+  const isMovieListed = !!movieDiaryData;
+
   /**
    * @param errorMessage {String}
    */
   const handleSearchingMovieError = (errorMessage) => {
     // eslint-disable-next-line no-alert
     alert(errorMessage);
+  };
 
-    navigate('/', { replace: true });
+  const handleGoBack = () => {
+    navigate(-1);
   };
 
   const renderMovieActions = () => {
-    const isMovieListed = !!movieDiaryData;
-
     if (isMovieListed) {
       return (
         <ListedMovieActions
@@ -48,6 +51,20 @@ const MoviePage = () => {
     }
 
     return <UnlistedMovieActions />;
+  };
+
+  const renderGoBackBtn = () => {
+    if (isMovieListed) {
+      return (
+        <div className="gl-movie-page__go-back">
+          <Button theme="primary" onClick={handleGoBack}>
+            Go back
+          </Button>
+        </div>
+      );
+    }
+
+    return null;
   };
 
   useEffect(() => {
@@ -66,6 +83,8 @@ const MoviePage = () => {
         {currentMovieData && (
           <MovieDetails movieData={currentMovieData}>{renderMovieActions()}</MovieDetails>
         )}
+
+        {renderGoBackBtn()}
       </div>
     </Layout>
   );

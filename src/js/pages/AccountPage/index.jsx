@@ -32,8 +32,6 @@ const AccountPage = () => {
               rel="noreferrer"
               className="gl-account-page__shared-token"
             >
-              <span>Link: </span>
-
               {shareToken}
             </a>
           </div>
