@@ -36,6 +36,7 @@ module.exports = {
         ignoredNodes: ['TemplateLiteral'],
       },
     ],
+    'object-curly-newline': NONE,
     'template-curly-spacing': NONE,
     'react/jsx-filename-extension': [
       WARN,

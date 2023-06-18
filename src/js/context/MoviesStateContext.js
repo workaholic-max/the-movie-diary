@@ -1,14 +1,19 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useContext } from 'react';
+import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
+
+import firebase from '../firebase';
+import { COLLECTION_KEYS } from '../enums/firebaseEnums';
+import AuthContext from './AuthContext';
+import OverlaySpinner from '../components/atoms/OverlaySpinner';
 
 const MoviesStateContext = React.createContext({});
 
-// TODO: also need to add movie to firebase (so show overlay spinner)
-// TODO: maybe spinner inside button so he can't again click and show pending process
-
 export const MoviesStateContextProvider = ({ children }) => {
-  const [movieDiary, setMovieDiary] = useState([]);
-  // eslint-disable-next-line no-unused-vars
-  const [isPending, setIsPending] = useState(false);
+  const [movieDiary, setMovieDiary] = useState(null);
+
+  const { user } = useContext(AuthContext);
+
+  const firestore = useMemo(() => getFirestore(firebase), []);
 
   /**
    * @param movieImdbID {String}
@@ -26,10 +31,35 @@ export const MoviesStateContextProvider = ({ children }) => {
   const getMovieDiaryDataByImdbID = (movieImdbID) =>
     movieDiary.find(({ imdbID }) => movieImdbID === imdbID);
 
+  const fetchMovieDiary = () => {
+    const docsQuery = collection(
+      firestore,
+      COLLECTION_KEYS.USERS,
+      user.uid,
+      COLLECTION_KEYS.MOVIE_DIARY,
+    );
+
+    getDocs(docsQuery).then((querySnapshot) => {
+      const movieDiaryData = querySnapshot.docs.map((docData) => ({ ...docData.data() }));
+
+      setMovieDiary(movieDiaryData);
+    });
+  };
+
   /**
    * @param movieData {Object}
    */
   const handleAddMovie = (movieData) => {
+    const docRef = doc(
+      firestore,
+      COLLECTION_KEYS.USERS,
+      user.uid,
+      COLLECTION_KEYS.MOVIE_DIARY,
+      movieData.imdbID,
+    );
+
+    setDoc(docRef, movieData);
+
     setMovieDiary((prevState) => [movieData, ...prevState]);
   };
 
@@ -37,6 +67,16 @@ export const MoviesStateContextProvider = ({ children }) => {
    * @param movieImdbID {String}
    */
   const handleDeleteMovie = (movieImdbID) => {
+    const docRef = doc(
+      firestore,
+      COLLECTION_KEYS.USERS,
+      user.uid,
+      COLLECTION_KEYS.MOVIE_DIARY,
+      movieImdbID,
+    );
+
+    deleteDoc(docRef);
+
     const movieIndex = getMovieIndex(movieImdbID);
 
     setMovieDiary((prevState) => [
@@ -58,6 +98,16 @@ export const MoviesStateContextProvider = ({ children }) => {
         ...updatedData,
       };
 
+      const docRef = doc(
+        firestore,
+        COLLECTION_KEYS.USERS,
+        user.uid,
+        COLLECTION_KEYS.MOVIE_DIARY,
+        movieImdbID,
+      );
+
+      setDoc(docRef, updatedMovie);
+
       return [...prevState.slice(0, movieIndex), updatedMovie, ...prevState.slice(movieIndex + 1)];
     });
   };
@@ -73,13 +123,14 @@ export const MoviesStateContextProvider = ({ children }) => {
     [movieDiary, getMovieDiaryDataByImdbID, handleAddMovie, handleDeleteMovie, handleUpdateMovie],
   );
 
-  // TODO: need to get movies from firebase
   useEffect(() => {
-    setMovieDiary([]);
+    fetchMovieDiary();
   }, []);
 
   return (
-    <MoviesStateContext.Provider value={providerValue}>{children}</MoviesStateContext.Provider>
+    <MoviesStateContext.Provider value={providerValue}>
+      {movieDiary !== null ? children : <OverlaySpinner>Loading movie diary data..</OverlaySpinner>}
+    </MoviesStateContext.Provider>
   );
 };
 

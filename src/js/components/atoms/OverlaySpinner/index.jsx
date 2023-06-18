@@ -1,5 +1,11 @@
 import React from 'react';
 
-const OverlaySpinner = () => <div className="gl-overlay-spinner"><span /></div>;
+const OverlaySpinner = ({ children }) => (
+  <div className="gl-overlay-spinner">
+    <span />
+
+    {children && <div className="gl-overlay-spinner__title">{children}</div>}
+  </div>
+);
 
 export default OverlaySpinner;
