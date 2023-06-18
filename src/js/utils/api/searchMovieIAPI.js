@@ -3,17 +3,27 @@
  *
  * @param movieTitle {String}
  * @param movieYear {Number}
+ * @param movieImdbID {String}
  *
  * @return {Promise<*>}
  */
-export const sendSearchMovieRequestAPI = async ({ movieTitle, movieYear }) => {
+export const sendSearchMovieRequestAPI = async ({ movieTitle, movieYear, movieImdbID }) => {
   const { REACT_APP_OMDB_API_URL: apiUrl, REACT_APP_OMDB_API_KEY: apiKey } = process.env;
 
-  const titlePart = `?t=${movieTitle.replace(/\s/g, '+')}`;
-  const yearPart = movieYear ? `&y=${movieYear}` : '';
+  const getQueryPart = () => {
+    if (movieImdbID) {
+      return `?i=${movieImdbID}`;
+    }
+
+    const titlePart = `?t=${movieTitle.replace(/\s/g, '+')}`;
+    const yearPart = movieYear ? `&y=${movieYear}` : '';
+
+    return titlePart + yearPart;
+  };
+
   const apiKeyPart = `&apikey=${apiKey}`;
 
-  const fullUrl = apiUrl + titlePart + yearPart + apiKeyPart;
+  const fullUrl = apiUrl + getQueryPart() + apiKeyPart;
 
   const res = await fetch(fullUrl);
 

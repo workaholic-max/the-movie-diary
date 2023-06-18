@@ -3,6 +3,12 @@
   flex-direction: column;
   min-height: 100vh;
 
+  @media screen and (max-width: $mobileWidth) {
+    &:not(.gl-app--auth) {
+      padding-bottom: 55px;
+    }
+  }
+
   .gl-container {
     max-width: 1350px;
     width: 100%;

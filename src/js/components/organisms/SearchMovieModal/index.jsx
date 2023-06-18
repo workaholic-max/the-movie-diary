@@ -35,13 +35,6 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
     setSearchingMovieError(null);
   };
 
-  /**
-   * @param errorMessage {String}
-   */
-  const handleSearchingMovieError = (errorMessage) => {
-    setSearchingMovieError(errorMessage);
-  };
-
   const handleStopSearchingMovie = () => {
     setIsSearchingMovie(false);
   };
@@ -64,7 +57,7 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
         payload.movieYear = movieYear;
       }
 
-      onSubmit(payload, handleSearchingMovieError, handleStopSearchingMovie);
+      onSubmit(payload, setSearchingMovieError, handleStopSearchingMovie);
     }
   };
 

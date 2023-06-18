@@ -1,10 +1,8 @@
 import React, { useContext } from 'react';
 
 import MoviesStateContext from '../../context/MoviesStateContext';
+import Layout from '../../components/templates/Layout';
 import MovieCards from './UI/MovieCards';
-
-// It seems that there are no movies in your diary that match status ${status}.
-// but you can activate status ${status} below in section no status movies (if allowed to show)
 
 const HomePage = () => {
   const { movieDiary } = useContext(MoviesStateContext);
@@ -52,21 +50,23 @@ const HomePage = () => {
   // TODO: create context for this (to have configuration after changing route)
 
   return (
-    <div className="gl-home-page">
-      <div className="gl-container">
-        {isMovieDiaryEmpty && renderEmptyMovieDiaryContent()}
+    <Layout>
+      <div className="gl-home-page">
+        <div className="gl-container">
+          {isMovieDiaryEmpty && renderEmptyMovieDiaryContent()}
 
-        <MovieCards title="Favorite" movieList={favoriteMovieList} />
+          <MovieCards title="Favorite" movieList={favoriteMovieList} />
 
-        <MovieCards title="Watched" movieList={watchedMovieList} />
+          <MovieCards title="Watched" movieList={watchedMovieList} />
 
-        <MovieCards title="Next to watch" movieList={wishlistMovieList} />
+          <MovieCards title="Next to watch" movieList={wishlistMovieList} />
 
-        {noStatusMovieList.length > 0 && (
-          <MovieCards title="No status" movieList={noStatusMovieList} />
-        )}
+          {noStatusMovieList.length > 0 && (
+            <MovieCards title="No status" movieList={noStatusMovieList} />
+          )}
+        </div>
       </div>
-    </div>
+    </Layout>
   );
 };
 

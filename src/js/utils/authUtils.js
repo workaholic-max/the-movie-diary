@@ -8,14 +8,13 @@ import { AUTH_USER_LS_KEY } from '../enums/authEnums';
  * @return {Object}
  */
 export const getRelevantUserData = (userData) => {
-  const { displayName, email, photoURL, uid, accessToken } = userData;
+  const { displayName, email, photoURL, uid } = userData;
 
   return {
     displayName,
     email,
     photoURL,
     uid,
-    accessToken,
   };
 };
 

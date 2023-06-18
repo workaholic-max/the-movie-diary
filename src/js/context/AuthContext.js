@@ -11,9 +11,6 @@ import firebase from '../firebase';
 import { getUserDataFromLS, getRelevantUserData } from '../utils/authUtils';
 import { AUTH_USER_LS_KEY } from '../enums/authEnums';
 import OverlaySpinner from '../components/atoms/OverlaySpinner';
-import Button from '../components/atoms/Button';
-
-import googleIcon from '../../images/google-icon.png';
 
 const AuthContext = React.createContext({});
 
@@ -47,22 +44,6 @@ export const AuthContextProvider = ({ children }) => {
     signOut(auth);
   };
 
-  const renderLoginView = () => (
-    <div className="gl-login-view">
-      <h1>The Movie Diary</h1>
-
-      <div className="gl-login-view__box">
-        <span>login required to proceed</span>
-
-        <Button theme="success" onClick={handleSignInWithGoogle}>
-          <img src={googleIcon} alt="Google icon" />
-
-          <span>Log in with Google</span>
-        </Button>
-      </div>
-    </div>
-  );
-
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (userData) => {
       if (userData) {
@@ -77,13 +58,17 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const providerValue = useMemo(() => ({ user, handleSignOut }), [user, handleSignOut]);
+  const providerValue = useMemo(() => ({ user, handleSignInWithGoogle, handleSignOut }), [
+    user,
+    handleSignInWithGoogle,
+    handleSignOut,
+  ]);
 
   return (
     <AuthContext.Provider value={providerValue}>
       {isSignInPending && <OverlaySpinner>Logging in..</OverlaySpinner>}
 
-      {user ? children : renderLoginView()}
+      {children}
     </AuthContext.Provider>
   );
 };

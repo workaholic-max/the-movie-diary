@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 
 import { sendSearchMovieRequestAPI } from '../utils/api/searchMovieIAPI';
 import MoviesStateContext from './MoviesStateContext';
-import SearchMovieModal from '../components/organisms/SearchMovieModal';
 
 const SearchMovieContext = React.createContext({});
 
@@ -17,9 +16,6 @@ export const SearchMovieContextProvider = ({ children }) => {
 
   const handleOpenSearchMovieModal = () => {
     setIsSearchMovieModalOpened(true);
-
-    // TODO: remove replace after add feature to load movie by imdbID
-    navigate('/', { replace: true });
   };
 
   const handleCloseSearchMovieModal = () => {
@@ -53,34 +49,38 @@ export const SearchMovieContextProvider = ({ children }) => {
 
           navigate(`movie/${imdbID}`, { replace: true });
         } else {
-          handleErrorResponse(movieData.Error);
+          handleErrorResponse?.(movieData.Error);
         }
       })
       .catch(() => {
-        handleErrorResponse('Some error occurred.. try later.');
+        handleErrorResponse?.('Some error occurred.. try later.');
       })
       .finally(() => {
-        handleStopLoading(false);
+        handleStopLoading?.();
       });
   };
 
   const providerValue = useMemo(
     () => ({
       searchedMovieData,
+      isSearchMovieModalOpened,
+      handleSearchMovie,
       handleOpenSearchMovieModal,
+      handleCloseSearchMovieModal,
       handleResetSearchedMovieData,
     }),
-    [searchedMovieData, handleOpenSearchMovieModal, handleResetSearchedMovieData],
+    [
+      searchedMovieData,
+      isSearchMovieModalOpened,
+      handleSearchMovie,
+      handleOpenSearchMovieModal,
+      handleCloseSearchMovieModal,
+      handleResetSearchedMovieData,
+    ],
   );
 
   return (
-    <SearchMovieContext.Provider value={providerValue}>
-      {children}
-
-      {isSearchMovieModalOpened && (
-        <SearchMovieModal onSubmit={handleSearchMovie} onClose={handleCloseSearchMovieModal} />
-      )}
-    </SearchMovieContext.Provider>
+    <SearchMovieContext.Provider value={providerValue}>{children}</SearchMovieContext.Provider>
   );
 };
 

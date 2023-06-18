@@ -1,5 +1,6 @@
 import React, { useState, useMemo, useEffect, useContext } from 'react';
 import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 import firebase from '../firebase';
 import { COLLECTION_KEYS } from '../enums/firebaseEnums';
@@ -9,9 +10,12 @@ import OverlaySpinner from '../components/atoms/OverlaySpinner';
 const MoviesStateContext = React.createContext({});
 
 export const MoviesStateContextProvider = ({ children }) => {
-  const [movieDiary, setMovieDiary] = useState(null);
+  const [movieDiary, setMovieDiary] = useState([]);
+  const [hasMovieDiaryLoaded, setHasMovieDiaryLoaded] = useState(false);
 
   const { user } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const firestore = useMemo(() => getFirestore(firebase), []);
 
@@ -41,6 +45,8 @@ export const MoviesStateContextProvider = ({ children }) => {
 
     getDocs(docsQuery).then((querySnapshot) => {
       const movieDiaryData = querySnapshot.docs.map((docData) => ({ ...docData.data() }));
+
+      setHasMovieDiaryLoaded(true);
 
       setMovieDiary(movieDiaryData);
     });
@@ -83,6 +89,8 @@ export const MoviesStateContextProvider = ({ children }) => {
       ...prevState.slice(0, movieIndex),
       ...prevState.slice(movieIndex + 1),
     ]);
+
+    navigate('/');
   };
 
   /**
@@ -124,12 +132,18 @@ export const MoviesStateContextProvider = ({ children }) => {
   );
 
   useEffect(() => {
-    fetchMovieDiary();
-  }, []);
+    if (user && !hasMovieDiaryLoaded) {
+      fetchMovieDiary();
+    }
+  }, [user?.uid]);
 
   return (
     <MoviesStateContext.Provider value={providerValue}>
-      {movieDiary !== null ? children : <OverlaySpinner>Loading movie diary data..</OverlaySpinner>}
+      {!user || hasMovieDiaryLoaded ? (
+        children
+      ) : (
+        <OverlaySpinner>Loading movie diary..</OverlaySpinner>
+      )}
     </MoviesStateContext.Provider>
   );
 };
