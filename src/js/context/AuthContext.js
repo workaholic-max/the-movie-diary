@@ -24,17 +24,17 @@ export const AuthContextProvider = ({ children }) => {
   const isAuthUserOwner = useMemo(() => user && user.uid === ownerUid, [user, ownerUid]);
 
   const handleSignInWithGoogle = () => {
-    const provider = new GoogleAuthProvider();
-
     setIsSignInPending(true);
+
+    const provider = new GoogleAuthProvider();
 
     signInWithPopup(auth, provider)
       .then((userData) => {
         const relevantUserData = getRelevantUserData(userData.user);
 
-        setOwnerUid(relevantUserData.uid);
-
         localStorage.setItem(AUTH_USER_LS_KEY, JSON.stringify(relevantUserData));
+
+        setOwnerUid(relevantUserData.uid);
       })
       .catch(() => {
         // eslint-disable-next-line no-alert

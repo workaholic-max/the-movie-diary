@@ -28,8 +28,6 @@ const HomePage = () => {
   );
 
   // TODO: add search
-  // TODO: also better filter here and pass movieList already filtered
-  // TODO: if filtered movieList is empty don't show movieCards
 
   // TODO: create config var which will determine when and what to render
   // TODO: we will have search / filterSelect (all, fav, ...)

@@ -11,9 +11,7 @@ import Input from '../../atoms/Input';
  */
 const LabelInputField = forwardRef(
   (
-    {
-      className, id, labelContent, enableInputFirst, enableAnimation, children, ...inputProps
-    },
+    { className, id, labelContent, enableInputFirst, enableAnimation, children, ...inputProps },
     ref,
   ) => (
     <div

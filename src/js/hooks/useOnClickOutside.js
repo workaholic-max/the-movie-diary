@@ -10,9 +10,15 @@ import { useEffect } from 'react';
  */
 const useOnClickOutside = (ref, callback, availableElements = []) => {
   useEffect(() => {
+    /**
+     * @param target {Object}
+     */
     const isClickedAvailable = (target) =>
       availableElements.some((element) => target.closest(element));
 
+    /**
+     * @param event {Event}
+     */
     const listener = (event) => {
       if (
         ref?.current &&

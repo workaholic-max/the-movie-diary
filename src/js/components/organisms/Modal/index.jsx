@@ -4,13 +4,7 @@ import classNames from 'classnames';
 import useOnClickOutside from '../../../hooks/useOnClickOutside';
 import { modalPropTypes, modalDefaultProps } from '../../../propTypes/modalProps';
 
-const Modal = ({
-  className,
-  enableCloseOnEsc,
-  enableCloseOnOverlayClick,
-  onClose,
-  children,
-}) => {
+const Modal = ({ className, enableCloseOnEsc, enableCloseOnOverlayClick, onClose, children }) => {
   const modalContentRef = useRef(null);
 
   /**

@@ -12,34 +12,26 @@ import { DEFAULT_SLIDER_SETTINGS } from './config';
 /**
  * Swiper slider
  */
-const SwiperSlider = forwardRef(
-  ({
-    sliderProps, slideProps, children, ...restProps
-  }, ref) => {
-    const { className, ...swiperSliderProps } = getProcessedSwiperSliderProps(
-      {
-        ...DEFAULT_SLIDER_SETTINGS,
-        ...sliderProps,
-        ...restProps,
-      },
-      children.length,
-    );
+const SwiperSlider = forwardRef(({ sliderProps, slideProps, children, ...restProps }, ref) => {
+  const { className, ...swiperSliderProps } = getProcessedSwiperSliderProps(
+    {
+      ...DEFAULT_SLIDER_SETTINGS,
+      ...sliderProps,
+      ...restProps,
+    },
+    children.length,
+  );
 
-    return (
-      <Swiper
-        ref={ref}
-        className={classNames('gl-swiper', className)}
-        {...swiperSliderProps}
-      >
-        {children.map((slide) => (
-          <SwiperSlide key={`slide_${slide.key}`} {...slideProps}>
-            {slide}
-          </SwiperSlide>
-        ))}
-      </Swiper>
-    );
-  },
-);
+  return (
+    <Swiper ref={ref} className={classNames('gl-swiper', className)} {...swiperSliderProps}>
+      {children.map((slide) => (
+        <SwiperSlide key={`slide_${slide.key}`} {...slideProps}>
+          {slide}
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
+});
 
 SwiperSlider.propTypes = SwiperSliderPropTypes;
 SwiperSlider.defaultProps = SwiperSliderDefaultProps;

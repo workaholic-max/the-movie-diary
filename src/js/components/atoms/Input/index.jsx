@@ -3,9 +3,7 @@ import React, { forwardRef } from 'react';
 import processEmptyProp from '../../../utils/helpers/processEmptyPropHelper';
 import { inputPropTypes, inputDefaultProps } from '../../../propTypes/inputProps';
 
-const Input = forwardRef(({
-  id, value, placeholder, isInputUncontrolled, ...props
-}, ref) => (
+const Input = forwardRef(({ id, value, placeholder, isInputUncontrolled, ...props }, ref) => (
   <input
     ref={ref}
     name={id}

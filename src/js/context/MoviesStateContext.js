@@ -1,6 +1,6 @@
 import React, { useState, useMemo, useEffect, useContext } from 'react';
-import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc } from 'firebase/firestore';
 
 import firebase from '../firebase';
 import { COLLECTION_KEYS } from '../enums/firebaseEnums';

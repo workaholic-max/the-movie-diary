@@ -6,8 +6,6 @@ import LabelInputField from '../../molecules/LabelInputField';
 import OverlaySpinner from '../../atoms/OverlaySpinner';
 import Button from '../../atoms/Button';
 
-// TODO: add "cancel" btn. Delete cross icon at all
-// TODO: make this modal more width and btns should be flex-end (YouTube)
 const SearchMovieModal = ({ onSubmit, onClose }) => {
   const [movieTitle, setMovieTitle] = useState('');
   const [movieYear, setMovieYear] = useState('');
@@ -95,7 +93,9 @@ const SearchMovieModal = ({ onSubmit, onClose }) => {
         />
 
         <div className="gl-search-movie-modal__footer">
-          <Button theme="primary" onClick={onClose}>Cancel</Button>
+          <Button theme="primary" onClick={onClose}>
+            Cancel
+          </Button>
 
           <Button theme="primary" type="submit" disabled={isSearchDisabled}>
             Search

@@ -5,9 +5,9 @@ import classNames from 'classnames';
 import AudioContext from '../../../context/AuthContext';
 import SearchMovieContext from '../../../context/SearchMovieContext';
 import SearchMovieModal from '../../organisms/SearchMovieModal';
+import Button from '../../atoms/Button';
 import Header from './UI/Header';
 import Footer from './UI/Footer';
-import Button from '../../atoms/Button';
 
 import googleIcon from '../../../../images/google-icon.png';
 
