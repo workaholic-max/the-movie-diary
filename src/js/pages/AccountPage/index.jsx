@@ -17,21 +17,27 @@ const AccountPage = () => {
   return (
     <Layout>
       <div className="gl-account-page">
-        <div className="gl-account-page__content">
-          <img src={user.photoURL} alt="user icon" />
+        <div className="gl-account-page__content gl-account-content">
+          <div className="gl-account-content__details">
+            <img src={user.photoURL} alt="user icon" />
 
-          <p>{user.displayName}</p>
+            <div>
+              <p>{user.displayName}</p>
 
-          <div className="gl-account-page__shared-token">
-            Link:
-            <a href={shareToken} target="_blank" rel="noreferrer">
-              {shareToken}
-            </a>
+              <Button theme="warning" onClick={handleSignOut}>
+                Log out
+              </Button>
+            </div>
           </div>
 
-          <Button theme="warning" onClick={handleSignOut}>
-            Sign out
-          </Button>
+          <a
+            href={shareToken}
+            target="_blank"
+            rel="noreferrer"
+            className="gl-account-page__shared-token"
+          >
+            {shareToken}
+          </a>
         </div>
       </div>
     </Layout>

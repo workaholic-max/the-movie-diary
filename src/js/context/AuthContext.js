@@ -41,7 +41,9 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   const handleSignOut = () => {
-    signOut(auth);
+    signOut(auth).then(() => {
+      localStorage.removeItem(AUTH_USER_LS_KEY);
+    });
   };
 
   useEffect(() => {
@@ -51,6 +53,8 @@ export const AuthContextProvider = ({ children }) => {
 
         setUser(relevantUserData);
       } else {
+        localStorage.removeItem(AUTH_USER_LS_KEY);
+
         setUser(null);
       }
     });
