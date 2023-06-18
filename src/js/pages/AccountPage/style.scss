@@ -29,6 +29,8 @@
         .gl-btn--warning {
           margin-top: 15px;
           width: 100%;
+          max-width: 150px;
+          border-width: 2px;
         }
       }
     }
@@ -38,15 +40,19 @@
     padding: 0 10px;
     margin-top: 20px;
     word-break: break-all;
-    color: $success;
+    color: #007aff;
     transition: $transition;
 
     @media screen and (max-width: 550px) {
       font-size: 16px;
     }
 
+    span {
+      color: $white;
+    }
+
     &:hover {
-      color: rgba($success, 0.5);
+      color: rgba(#007aff, 0.5);
     }
   }
 }

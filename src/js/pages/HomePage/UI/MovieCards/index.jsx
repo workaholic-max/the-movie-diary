@@ -1,8 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import AuthContext from '../../../../context/AuthContext';
 import SwiperSlider from '../../../../components/organisms/SwiperSlider';
 import ListedMovieActions from '../../../../components/organisms/ListedMovieActions';
 import { SwiperArrowNext, SwiperArrowPrev } from '../../../../components/atoms/SwiperArrows';
@@ -11,6 +12,8 @@ import { SLIDER_SETTINGS } from './config';
 const MovieCards = ({ title, movieList }) => {
   const swiperArrowPrevRef = useRef(null);
   const swiperArrowNextRef = useRef(null);
+
+  const { isAuthUserOwner, ownerUid } = useContext(AuthContext);
 
   const isMovieListEmpty = movieList.length === 0;
 
@@ -32,16 +35,18 @@ const MovieCards = ({ title, movieList }) => {
    * @param Title {String}
    * @param statuses {Object}
    */
-  const renderMovieCard = ({
-    imdbID, Poster, Title, statuses,
-  }) => {
+  const renderMovieCard = ({ imdbID, Poster, Title, statuses }) => {
     const isPosterInvalid = Poster.length === 0 || Poster === 'N/A';
+
+    const moviePath = `/movie/${imdbID}`;
+
+    const linkTo = isAuthUserOwner ? moviePath : `/${ownerUid}${moviePath}`;
 
     return (
       <div key={`${title}-${imdbID}`} className="gl-movie-cards__card">
         <Link
           key={`${title}-${imdbID}`}
-          to={`/movie/${imdbID}`}
+          to={linkTo}
           className={classNames('gl-movie-cards__card-poster', {
             'gl-movie-cards__card-poster--invalid': isPosterInvalid,
           })}
@@ -76,9 +81,7 @@ const MovieCards = ({ title, movieList }) => {
   );
 
   const renderMovieCardsEmpty = () => (
-    <span>
-      There are no movies in your diary that match status {title.toLowerCase()}.
-    </span>
+    <span>There are no movies in your diary that match status {title.toLowerCase()}.</span>
   );
 
   return (

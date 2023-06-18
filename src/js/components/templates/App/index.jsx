@@ -16,15 +16,15 @@ const App = () => (
           <Routes>
             <Route path="/account" element={<AccountPage />} />
 
-            <Route path="/:userId/movie/:imdbID" element={<MoviePage />} />
+            <Route path="/:ownerID/movie/:imdbID" element={<MoviePage />} />
 
-            <Route path="/:userId" element={<HomePage />} />
+            <Route path="/:ownerID" element={<HomePage />} />
 
             <Route path="/movie/:imdbID" element={<MoviePage />} />
 
             <Route path="/" element={<HomePage />} />
 
-            <Route path="*" element={<Navigate to="/" replace />} />
+            <Route element={<Navigate to="/" replace />} />
           </Routes>
         </SearchMovieContextProvider>
       </MoviesStateContextProvider>

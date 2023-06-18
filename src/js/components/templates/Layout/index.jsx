@@ -1,6 +1,7 @@
-import React, { useContext } from 'react';
-
+import React, { useContext, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import classNames from 'classnames';
+
 import AudioContext from '../../../context/AuthContext';
 import SearchMovieContext from '../../../context/SearchMovieContext';
 import SearchMovieModal from '../../organisms/SearchMovieModal';
@@ -11,13 +12,16 @@ import Button from '../../atoms/Button';
 import googleIcon from '../../../../images/google-icon.png';
 
 const Layout = ({ children }) => {
-  const { user, handleSignInWithGoogle } = useContext(AudioContext);
+  const { user, setOwnerUid, handleSignInWithGoogle } = useContext(AudioContext);
 
   const { isSearchMovieModalOpened, handleSearchMovie, handleCloseSearchMovieModal } = useContext(
     SearchMovieContext,
   );
 
+  const { ownerID } = useParams();
+
   const renderContent = () => {
+    // TODO: create restrictedRoute and LoginPage
     if (!user) {
       return (
         <div className="gl-login-view">
@@ -52,6 +56,10 @@ const Layout = ({ children }) => {
       </>
     );
   };
+
+  useEffect(() => {
+    setOwnerUid(ownerID || user?.uid);
+  }, [ownerID]);
 
   return (
     <div

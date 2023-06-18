@@ -16,9 +16,12 @@ const AuthContext = React.createContext({});
 
 export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(getUserDataFromLS());
+  const [ownerUid, setOwnerUid] = useState(null);
   const [isSignInPending, setIsSignInPending] = useState(false);
 
   const auth = useMemo(() => getAuth(firebase), []);
+
+  const isAuthUserOwner = useMemo(() => user && user.uid === ownerUid, [user, ownerUid]);
 
   const handleSignInWithGoogle = () => {
     const provider = new GoogleAuthProvider();
@@ -28,6 +31,8 @@ export const AuthContextProvider = ({ children }) => {
     signInWithPopup(auth, provider)
       .then((userData) => {
         const relevantUserData = getRelevantUserData(userData.user);
+
+        setOwnerUid(relevantUserData.uid);
 
         localStorage.setItem(AUTH_USER_LS_KEY, JSON.stringify(relevantUserData));
       })
@@ -43,6 +48,8 @@ export const AuthContextProvider = ({ children }) => {
   const handleSignOut = () => {
     signOut(auth).then(() => {
       localStorage.removeItem(AUTH_USER_LS_KEY);
+
+      setOwnerUid(null);
     });
   };
 
@@ -62,11 +69,10 @@ export const AuthContextProvider = ({ children }) => {
     return () => unsubscribe();
   }, []);
 
-  const providerValue = useMemo(() => ({ user, handleSignInWithGoogle, handleSignOut }), [
-    user,
-    handleSignInWithGoogle,
-    handleSignOut,
-  ]);
+  const providerValue = useMemo(
+    () => ({ user, ownerUid, isAuthUserOwner, setOwnerUid, handleSignInWithGoogle, handleSignOut }),
+    [user, ownerUid, isAuthUserOwner, setOwnerUid, handleSignInWithGoogle, handleSignOut],
+  );
 
   return (
     <AuthContext.Provider value={providerValue}>
